@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Section Website</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(120deg, #6a11cb, #2575fc);
+      color: white;
+    }
+
+    .hero {
+      position: relative;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: bold;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      animation: fadeInUp 1.5s ease-out 0.3s;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      color: #2575fc;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .hero-btn:hover {
+      transform: scale(1.1);
+      background-color: #6a11cb;
+      color: white;
+    }
+
+    .background-layer {
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      animation: moveBackground 10s linear infinite;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes moveBackground {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="background-layer"></div>
+    <h1 class="hero-title">Welcome to Phase</h1>
+    <p class="hero-subtitle">Experience the future of design and interactivity</p>
+    <button class="hero-btn">Get Started</button>
+  </div>
+
+  <script>
+    document.addEventListener('mousemove', (e) => {
+      const { clientX: x, clientY: y } = e;
+      const layers = document.querySelectorAll('.background-layer');
+      layers.forEach(layer => {
+        const speed = 15; // Adjust this for desired intensity
+        const offsetX = (window.innerWidth / 2 - x) / speed;
+        const offsetY = (window.innerHeight / 2 - y) / speed;
+        layer.style.transform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`;
+      });
+    });
+  </script>
+</body>
+</html>
